@@ -12,11 +12,10 @@ const gendiff = (filepath1, filepath2) => {
   const allKeys = _.union(Object.keys(jsonData1), Object.keys(jsonData2));
   allKeys.sort();
 
-  let diffResult = "{\n";
+  let diffResult = '{\n';
 
   for (let i = 0; i < allKeys.length; i++) {
     const key = allKeys[i];
-    
     if (!jsonData1.hasOwnProperty(key)) {
       diffResult += `  + ${key}: ${jsonData2[key]}\n`;
     } else if (!jsonData2.hasOwnProperty(key)) {
@@ -28,10 +27,9 @@ const gendiff = (filepath1, filepath2) => {
     }
   }
 
-  diffResult += "}";
+  diffResult += '}';
 
   return diffResult;
-}
+};
 
 export default gendiff;
-
