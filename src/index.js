@@ -14,7 +14,7 @@ const gendiff = (filepath1, filepath2) => {
 
   let diffResult = '{\n';
 
-  for (let i = 0; i < allKeys.length; i++) {
+  for (let i = 0; i < allKeys.length; i += 1) {
     const key = allKeys[i];
     if (!jsonData1.hasOwnProperty(key)) {
       diffResult += `  + ${key}: ${jsonData2[key]}\n`;
