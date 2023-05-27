@@ -16,18 +16,18 @@ const gendiff = (filepath1, filepath2) => {
 
   for (let i = 0; i < allKeys.length; i += 1) {
     const key = allKeys[i];
-    if (!jsonData1.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(jsonData1, key)) {
       diffResult += `  + ${key}: ${jsonData2[key]}\n`;
-    } else if (!jsonData2.hasOwnProperty(key)) {
+    } else if (!Object.prototype.hasOwnProperty.call(jsonData2, key)) {
       diffResult += `  - ${key}: ${jsonData1[key]}\n`;
-    } else if (jsonData1[key] === jsonData2[key]) {
-      diffResult += `   ${key}: ${jsonData1[key]}\n`;
-    } else {
+    } else if (jsonData1[key] !== jsonData2[key]) {
       diffResult += `  - ${key}: ${jsonData1[key]}\n  + ${key}: ${jsonData2[key]}\n`;
+    } else {
+      diffResult += `    ${key}: ${jsonData1[key]}\n`;
     }
   }
 
-  diffResult += '}';
+  diffResult += '}\n';
 
   return diffResult;
 };
